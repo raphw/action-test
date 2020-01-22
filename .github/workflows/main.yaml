@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - run: echo ${{ github.repositoryUrl }} 
-      - env:
-          EMAIL: ${{ github.head_commit.author.email }}
-        run: echo $EMAIL
-      - run: echo ${{ toJson(github.head_commit) }}
+      - run: echo ${{ github.event.head_commit.committer.name }}
+      - run: echo ${{ github.event.head_commit.committer.email }}
+
