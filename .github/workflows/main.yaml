@@ -7,13 +7,18 @@ on:
 
 jobs:
   my-test:
-    name: My test
+    name: Release new version
     runs-on: ubuntu-18.04
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, '[release]')
     steps:
-      - run: echo ${{ github.repositoryUrl }} 
-      - run: echo ${{ github.event.head_commit.committer.name }}
-      - run: echo ${{ github.event.head_commit.committer.email }}
-      - run: echo ${{ github.event.head_commit.message }}
-      - run: echo "Is executed"
-        if: startsWith(github.event.head_commit.message, '[release]')
-      - run: git clone ${{ github.repositoryUrl }}
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 8
+          architecture: x64
+      - name: Publish new version
+        run: |
+          echo "${{ secrets.gpg_secret }}" | gpg --batch --import
+          export GPG_TTY=$(tty)
+          git config user.name "${{ github.event.head_commit.committer.name }}"
+          git config user.email "${{ github.event.head_commit.committer.email }}"
+          git clone ${{ github.repositoryUrl }}
