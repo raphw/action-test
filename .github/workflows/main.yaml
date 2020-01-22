@@ -16,3 +16,4 @@ jobs:
       - run: echo ${{ github.event.head_commit.message }}
       - run: echo "Is executed"
         if: startsWith(github.event.head_commit.message, '[release]')
+      - run: git clone ${{ github.repositoryUrl }}
