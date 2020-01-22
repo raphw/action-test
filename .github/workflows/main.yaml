@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - run: echo ${{ github.repositoryUrl }} 
-      - run: echo ${{ github.head_commit.name }}
-      - run: echo ${{ github.head_commit.author.email }}
-      - run: echo ${{ github.head_commit.author.name }}
-      - run: echo ${{ github.head_commit.message }}
+      - run: echo ${{ github['head_commit'].author.email }}
+      - run: echo ${{ github['head_commit'].author.name }}
+      - run: echo ${{ github['head_commit'].message }}
