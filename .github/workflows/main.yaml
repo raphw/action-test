@@ -1,0 +1,15 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  my-test:
+    name: My test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Command test
+        run: |
+          echo ${{ github.actor }}
