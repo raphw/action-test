@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Command test
         run: |
-          echo ${{ github.actor }}
+          echo ${{ toJson(github) }} 
