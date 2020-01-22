@@ -17,7 +17,8 @@ jobs:
           architecture: x64
       - name: Publish new version
         run: |
-          export GPG_TTY=$(tty)
+          git clone ${{ github.repositoryUrl }} .
           git config user.name "${{ github.event.head_commit.committer.name }}"
           git config user.email "${{ github.event.head_commit.committer.email }}"
-          git clone ${{ github.repositoryUrl }}
+          export GPG_TTY=$(tty)
+
