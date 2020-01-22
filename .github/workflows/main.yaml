@@ -10,7 +10,8 @@ jobs:
     name: My test
     runs-on: ubuntu-18.04
     steps:
-      - name: Command test
-        env: 
-          GITHUB_CONTEXT: ${{ toJson(github) }} 
-        run: echo "$GITHUB_CONTEXT" 
+      - run: echo ${{ github.repositoryUrl }} 
+      - run: echo ${{ github.head_commit.name }}
+      - run: echo ${{ github.head_commit.author.email }}
+      - run: echo ${{ github.head_commit.author.name }}
+      - run: echo ${{ github.head_commit.message }}
