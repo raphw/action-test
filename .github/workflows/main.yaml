@@ -11,5 +11,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Command test
-        run: |
-          echo ${{ toJson(github) }} 
+        env: 
+          GITHUB_CONTEXT: ${{ toJson(github) }} 
+        run: echo "$GITHUB_CONTEXT" 
